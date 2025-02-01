@@ -1,10 +1,13 @@
 package school.ferreira.models;
 
 import jakarta.persistence.*;
+import org.springframework.hateoas.RepresentationModel;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "professor_materia")
-public class ProfessorMateria {
+public class ProfessorMateria extends RepresentationModel<ProfessorMateria> implements Serializable {
 
     @EmbeddedId
     private ProfessorMateriaId id;

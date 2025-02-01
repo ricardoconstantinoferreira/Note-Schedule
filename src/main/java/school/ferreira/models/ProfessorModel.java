@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "professor")
@@ -20,8 +19,14 @@ public class ProfessorModel extends RepresentationModel<ProfessorModel> implemen
     @Column(nullable = false)
     private String formacao;
 
-    @OneToMany(mappedBy = "professor")
-    private List<ProfessorMateria> professorMateria;
+    public ProfessorModel() {
+    }
+
+    public ProfessorModel(int id, String name, String formacao) {
+        this.id = id;
+        this.name = name;
+        this.formacao = formacao;
+    }
 
     public int getId() {
         return id;
@@ -45,13 +50,5 @@ public class ProfessorModel extends RepresentationModel<ProfessorModel> implemen
 
     public void setFormacao(String formacao) {
         this.formacao = formacao;
-    }
-
-    public List<ProfessorMateria> getProfessorMateria() {
-        return professorMateria;
-    }
-
-    public void setProfessorMateria(List<ProfessorMateria> professorMateria) {
-        this.professorMateria = professorMateria;
     }
 }
