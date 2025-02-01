@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "professor")
@@ -21,47 +20,38 @@ public class ProfessorModel extends RepresentationModel<ProfessorModel> implemen
     @Column(nullable = false)
     private String formacao;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
-    @JoinTable(name = "professor_materia",
-            joinColumns = { @JoinColumn(name = "professor_id") },
-            inverseJoinColumns = { @JoinColumn(name = "materia_id") }
-    )
-    private Set<MateriaModel> materia = new HashSet<>();
+    @OneToMany(mappedBy = "professor")
+    private List<ProfessorMateria> professorMateria;
 
-    private int getId() {
+    public int getId() {
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    private String getFormacao() {
+    public String getFormacao() {
         return formacao;
     }
 
-    private void setFormacao(String formacao) {
+    public void setFormacao(String formacao) {
         this.formacao = formacao;
     }
 
-    public Set<MateriaModel> getMateria() {
-        return materia;
+    public List<ProfessorMateria> getProfessorMateria() {
+        return professorMateria;
     }
 
-    public void setMateria(Set<MateriaModel> materia) {
-        this.materia = materia;
+    public void setProfessorMateria(List<ProfessorMateria> professorMateria) {
+        this.professorMateria = professorMateria;
     }
 }

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "curso")
@@ -17,8 +16,13 @@ public class CursoModel extends RepresentationModel<CursoModel> implements Seria
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "curso")
-    private List<CursoMateria> cursoMateria;
+    public CursoModel() {
+    }
+
+    public CursoModel(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -34,13 +38,5 @@ public class CursoModel extends RepresentationModel<CursoModel> implements Seria
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<CursoMateria> getCursoMateria() {
-        return cursoMateria;
-    }
-
-    public void setCursoMateria(List<CursoMateria> cursoMateria) {
-        this.cursoMateria = cursoMateria;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import school.ferreira.controllers.MateriaController;
 import school.ferreira.dtos.MateriaRecordDto;
 import school.ferreira.models.MateriaModel;
+import school.ferreira.repositories.CursoRepository;
 import school.ferreira.repositories.MateriaRepository;
 
 import java.util.List;
